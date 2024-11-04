@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Check Stock Price</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="ticker">Ticker Symbol</label>
+            <input type="text" class="form-control" id="ticker" name="ticker" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Price</button>
+    </form>
+
+    {% if stock_data %}
+        <h2>Stock Data for {{ request.form.get('ticker') }}</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for date, data in stock_data.iterrows() %}
+                    <tr>
+                        <td>{{ date }}</td>
+                        <td>{{ data['Open'] }}</td>
+                        <td>{{ data['High'] }}</td>
+                        <td>{{ data['Low'] }}</td>
+                        <td>{{ data['Close'] }}</td>
+                        <td>{{ data['Volume'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

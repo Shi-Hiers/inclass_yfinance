@@ -9,10 +9,12 @@ app.secret_key = 'your-secret'  # Replace with an environment variable
 from app.blueprints.loan_amortization import loan_amortization
 from app.blueprints.loan_amortization_detail import loan_amortization_detail
 from app.blueprints.grades import grades
+from app.blueprints.stocks import stocks_bp
 
 app.register_blueprint(loan_amortization)
 app.register_blueprint(loan_amortization_detail)
 app.register_blueprint(grades)
+app.register_blueprint(stocks_bp)
 
 from . import routes
 
